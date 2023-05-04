@@ -1,0 +1,163 @@
+<?php include('partials-frontend/menu.php'); ?>
+
+    <?php 
+        if(isset($_GET['food_id']))
+        {
+            //get Food details
+            $food_id = $_GET['food_id'];
+
+            $sql = "SELECT * FROM tbl_food WHERE id=$food_id";
+
+            $res = mysqli_query($conn, $sql);
+
+            $count = mysqli_num_rows($res);
+
+            if($count==1)
+            {
+                //Data available
+                $row = mysqli_fetch_assoc($res);
+                $title = $row['title'];
+                $price = $row['price'];
+                $image_name = $row['image_name'];
+            }
+            else
+            {
+                //unavailable
+                header('location:'.SITEURL);
+            }
+        }
+        else
+        {
+            //redirect
+            header('location:'.SITEURL);
+        }
+    ?>
+
+    <!-- fOOD sEARCH Section Starts Here -->
+    <section class="food-search">
+        <div class="container">
+            
+            <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
+
+            <form action="" method="POST" class="order">
+                <fieldset>
+                    <legend>Selected Food</legend>
+
+                    <div class="food-menu-img">
+                        <?php  
+                        
+                            //is the image available?
+                            if($image_name=="")
+                            {
+                                //available
+                                echo "<div class='error'>Image Unavailable</div>";
+                            }
+                            else
+                            {
+                                //unavailable
+                                ?>
+                                    <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
+                                <?php
+                            }
+
+                        ?>
+                        
+                    </div>
+    
+                    <div class="food-menu-desc">
+                        <h3><?php echo $title; ?></h3>
+                        <input type="hidden" name="food" value="<?php echo $title; ?>">   
+
+
+                        <p class="food-price">$<?php echo $price; ?></p>
+                        <input type="hidden" name="price" value="<?php echo $price; ?>">
+
+                        <div class="order-label">Quantity</div>
+                        <input type="number" name="qty" class="input-responsive" value="1" required>
+                        
+                    </div>
+
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Delivery Details</legend>
+                    <div class="order-label">Full Name</div>
+                    <input type="text" name="full-name" placeholder="E.g. Sean McNally" class="input-responsive" required>
+
+                    <div class="order-label">Phone Number</div>
+                    <input type="tel" name="contact" placeholder="E.g. 07522 444666" class="input-responsive" required>
+
+                    <div class="order-label">Email</div>
+                    <input type="email" name="email" placeholder="E.g. helloworld@java.com" class="input-responsive" required>
+
+                    <div class="order-label">Address</div>
+                    <textarea name="address" rows="10" placeholder="E.g. Street, City, Country, Post Code" class="input-responsive" required></textarea>
+
+                    <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
+                </fieldset>
+
+            </form>
+
+            <?php
+            
+                //is button clicked?
+                if(isset($_POST['submit']))
+                {
+                    //Retreive ALL details
+                    $food = $_POST['food'];
+                    $price = $_POST['price'];
+                    $qty = $_POST['qty'];
+
+                    $total = $price * $qty;
+
+                    //order date
+                    $order_date = date("Y-m-d h:i:sa");
+
+                    $status = "Ordered"; 
+
+                    $customer_name = $_POST['full-name'];
+                    $customer_contact = $_POST['contact'];
+                    $customer_email = $_POST['email'];
+                    $customer_address = $_POST['address'];
+
+                    //input the customer order into the database
+                    $sql2 = "INSERT INTO tbl_order SET
+                        food = '$food',
+                        price = $price,
+                        qty = $qty,
+                        total = $total,
+                        order_date = '$order_date',
+                        status = '$status',
+                        customer_name = '$customer_name',
+                        customer_contact = '$customer_contact',
+                        customer_email = '$customer_email',
+                        customer_address = '$customer_address'
+                    
+                    ";
+
+                    
+
+                    $res2 = mysqli_query($conn, $sql2);
+
+                    if($res2==true)
+                    {
+                        //order saved
+                        $_SESSION['order'] = "<div class='success text-center'>Order Saved Successfully</div>";
+                        header('location:'.SITEURL);
+                    }
+                    else
+                    {
+                        //order failed
+                        $_SESSION['order'] = "<div class='error text-center'>Order Unsuccessful</div>";
+                        header('location:'.SITEURL);
+                    }
+
+                }
+            
+            ?>
+
+        </div>
+    </section>
+    <!-- fOOD sEARCH Section Ends Here -->
+
+    <?php include('partials-frontend/footer.php'); ?>

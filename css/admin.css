@@ -1,0 +1,160 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.wrapper{
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text-center{
+    text-align: center;
+    font-family: Tahoma, sans-serif;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+/* table */
+.tbl-full{
+    width: 100%;
+}
+.tbl-30{
+    width: 30%;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+/* table end */
+
+/* button */
+.btn-primary{
+    background-color: #1abc9c;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-primary {border-radius: 5px;}
+
+.btn-primary:hover{
+    background-color: #2ecc71;
+}
+
+.btn-secondary{
+    background-color: #16a085;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-secondary {border-radius: 5px;}
+
+.btn-secondary:hover{
+    background-color: #27ae60;
+}
+
+.btn-danger{
+    background-color: #e74c3c;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-danger {border-radius: 5px;}
+
+.btn-danger:hover{
+    background-color: #c0392b;
+}
+
+.success{
+    color:#2ecc71 ;
+}
+
+.error{
+    color: #e74c3c;
+}
+
+/* button end */
+
+/* CSS for Menu */
+
+.logobackend{
+    width: 1%;
+    float: left;
+    
+    
+}
+
+.menu{
+    border-bottom: 1px solid grey;
+}
+.menu{
+    text-align: center;
+}
+.menu ul{
+    list-style-type: none;
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+}
+.menu ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #e67e22;
+}
+.menu ul li a:hover{
+    color: #d35400;
+}
+
+
+
+/* CSS for main-content */
+.main-content{
+    background-color: #ecf0f1;
+    padding: 3% 0;
+    
+    
+}
+
+.col-4{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+}
+
+
+
+/* CSS for Footer */
+
+.footer{
+    background-color: white;
+    color: black;
+}
+
+/* CSS FOR LOGIN */
+.login{
+    border: 5px solid black;
+    width: 20%;
+    margin: 10% auto;
+    padding: 2%;
+    font-family: Tahoma, sans-serif;
+    
+}
