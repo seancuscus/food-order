@@ -1,6 +1,6 @@
 # restaurant-order-system CI601 The Computing Project
 
-To use, start a localhost (for example thorugh XAMPP) I have attached a copy of the database used for this system (food-order.sql), simply import this database into PHPmyadmin once you have started the localhost
+To use, start a localhost Using XAMPP, create a database named 'food-order' then import the database within the ZIP file named 'food-order.sql' PLEASE EXTRACT THE ZIP INTO YOUR LOCALDISK/XAMPP/HTDOCS AND RENAME FOLDER TOO 'food-order' 
 
 http://localhost/food-order/ - frontend
 
